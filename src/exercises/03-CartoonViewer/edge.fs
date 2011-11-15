@@ -33,7 +33,25 @@ void main()
 	//                  -1 -1 -1
 	//
 	
+	mat3 Gx = mat3(
+		vec3( -1.0, 0.0, 1.0 ),
+		vec3( -1.0, 0.0, 1.0 ),
+		vec3( -1.0, 0.0, 1.0 )
+	);
 	
-	gl_FragColor = texture2D(texture, gl_TexCoord[0].xy);
+	mat3 Gy = mat3(
+		vec3(  1.0,  1.0,  1.0 ),
+		vec3(  0.0,  0.0,  0.0 ),
+		vec3( -1.0, -1.0, -1.0 )
+	);
+	
+	int i = int(gl_FragCoord.x);
+	int j = int(gl_FragCoord.y);
+	
+	float gx = C(Gx, i, j);
+	float gy = C(Gy, i, j);
+	float gnorm = sqrt( gx * gx + gy * gy );
+	
+	gl_FragColor = vec4( gnorm, gnorm, gnorm, 1.0 );
 	
 }
