@@ -1,0 +1,4 @@
+visualstudio/03-CartoonViewer/Debug/
+*.ncb
+*.suo
+visualstudio/03-CartoonViewer/*.vcproj.*
