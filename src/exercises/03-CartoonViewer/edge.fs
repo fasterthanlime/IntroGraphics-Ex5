@@ -1,4 +1,4 @@
-uniform sampler2D texture; // the depth texture that need to be post processed with the sobel operator
+uniform sampler2D texture; // the depth texture that need to be post processed with the prewitt operator
 
 uniform float dx; // use this uniform to move 1 pixel in x
 uniform float dy; // use this uniform to move 1 pixel in y
@@ -6,7 +6,7 @@ uniform float dy; // use this uniform to move 1 pixel in y
 float I(int i, int j)
 {
 	// x = y = z in our linear depth texture anyway :)
-	return texture2D( texture, vec2( float(i) * dx, float(j) * dx ) ).x;
+	return texture2D( texture, vec2( float(i) * dx, float(j) * dy ) ).x;
 }
 		
 float C(mat3 K, int i, int j)
@@ -34,15 +34,15 @@ void main()
 	//
 	
 	mat3 Gx = mat3(
-		vec3( -1.0, 0.0, 1.0 ),
-		vec3( -1.0, 0.0, 1.0 ),
-		vec3( -1.0, 0.0, 1.0 )
+		-1.0, -1.0, -1.0,
+		 0.0,  0.0,  0.0,
+		 1.0,  1.0,  1.0
 	);
 	
 	mat3 Gy = mat3(
-		vec3(  1.0,  1.0,  1.0 ),
-		vec3(  0.0,  0.0,  0.0 ),
-		vec3( -1.0, -1.0, -1.0 )
+		 1.0,  0.0, -1.0,
+		 1.0,  0.0, -1.0,
+		 1.0,  0.0, -1.0
 	);
 	
 	int i = int(gl_FragCoord.x);
@@ -50,7 +50,7 @@ void main()
 	
 	float gx = C(Gx, i, j);
 	float gy = C(Gy, i, j);
-	float gnorm = 1.0 - 10.0 * sqrt( gx * gx + gy * gy );
+	float gnorm = 1.0 - 10.0 * sqrt( ( gx * gx ) + ( gy * gy ) );
 	
-	gl_FragColor = vec4( gnorm, gnorm, gnorm, 1.0 );
+	gl_FragColor = vec4( gx, gy, sqrt( ( gx * gx ) + ( gy * gy ) ), 1.0 );
 }
