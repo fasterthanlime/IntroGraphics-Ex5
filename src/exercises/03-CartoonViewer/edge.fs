@@ -6,15 +6,15 @@ uniform float dy; // use this uniform to move 1 pixel in y
 float I(int i, int j)
 {
 	// x = y = z in our linear depth texture anyway :)
-	return texture2D( texture, vec2( float(i) * dx, float(j) * dy ) ).x;
+	return texture2D( texture, vec2( float( i ) * dx, float( j ) * dy ) ).x;
 }
 		
 float C(mat3 K, int i, int j)
 {
 	float sum = 0.0;
-	for ( int m = 0; m < 2; m++ ) {
-		for ( int n = 0; n < 2; n++ ) {
-			sum += K[m][n] * I( i + m - 1, j + n - 1 );
+	for ( int m = 0; m <= 2; m++ ) {
+		for ( int n = 0; n <= 2; n++ ) {
+			sum += K[ m ][ n ] * I( i + m - 1, j + n - 1 );
 		}
 	}
 	return sum;
@@ -45,12 +45,12 @@ void main()
 		 1.0,  0.0, -1.0
 	);
 	
-	int i = int(gl_FragCoord.x);
-	int j = int(gl_FragCoord.y);
+	int i = int( gl_FragCoord.x );
+	int j = int( gl_FragCoord.y );
 	
-	float gx = C(Gx, i, j);
-	float gy = C(Gy, i, j);
+	float gx = C( Gx, i, j );
+	float gy = C( Gy, i, j );
 	float gnorm = 1.0 - 10.0 * sqrt( ( gx * gx ) + ( gy * gy ) );
 	
-	gl_FragColor = vec4( gx, gy, gnorm, 1.0 );
+	gl_FragColor = vec4( gnorm, gnorm, gnorm, 1.0 );
 }
