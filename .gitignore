@@ -1,4 +1,5 @@
 visualstudio/03-CartoonViewer/Debug/
+visualstudio/03-CartoonViewer/Release/
 *.ncb
 *.suo
 visualstudio/03-CartoonViewer/*.vcproj.*
