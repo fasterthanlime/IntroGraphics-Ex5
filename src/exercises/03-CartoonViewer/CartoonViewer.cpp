@@ -165,7 +165,7 @@ drawCartoon() {
 	
 	// clear screen
 	glEnable(GL_DEPTH_TEST);
-	glClearColor(1,1,1,0);
+	glClearColor(1.0, 1.0, 1.0, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	m_cartoonShader.bind(); 
@@ -225,7 +225,7 @@ drawDepth() {
 	
 	// clear screen
 	glEnable(GL_DEPTH_TEST);
-	glClearColor(0,0,0,0);
+	glClearColor(1.0, 1.0, 1.0, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	m_depthShader.bind(); 
@@ -236,6 +236,7 @@ drawDepth() {
 	m_depthShader.setMatrix4x4Uniform("modelworld", m_mesh.getTransformation() );
 	m_depthShader.setFloatUniform("near",m_camera.getNearPlane());
 	m_depthShader.setFloatUniform("far",m_camera.getFarPlane());
+  std::cout << "near plane = " << m_camera.getNearPlane() << ", far = " << m_camera.getFarPlane() << std::endl;
 	
 	glEnableClientState(GL_VERTEX_ARRAY);
 	
