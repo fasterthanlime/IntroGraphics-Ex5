@@ -7,13 +7,13 @@ void main()
 {	
 	//
 	// calculate prewitt edges
-	//					-1  0  1
-	// x derivative:			-1  0  1
-	//					-1  0  1
+	//                  -1  0  1
+	// x derivative:    -1  0  1
+	//                  -1  0  1
 	// 
-	//					 1  1  1
-	// y derivative:	 		 0  0  0
-	//					-1 -1 -1
+	//                   1  1  1
+	// y derivative:     0  0  0
+	//                  -1 -1 -1
 	//
 	
 	gl_FragColor = texture2D(texture, gl_TexCoord[0].xy);
