@@ -236,8 +236,7 @@ drawDepth() {
 	m_depthShader.setMatrix4x4Uniform("modelworld", m_mesh.getTransformation() );
 	m_depthShader.setFloatUniform("near",m_camera.getNearPlane());
 	m_depthShader.setFloatUniform("far",m_camera.getFarPlane());
-  std::cout << "near plane = " << m_camera.getNearPlane() << ", far = " << m_camera.getFarPlane() << std::endl;
-	
+  
 	glEnableClientState(GL_VERTEX_ARRAY);
 	
 	glVertexPointer( 3, GL_DOUBLE, 0, m_mesh.getVertexPointer() );
