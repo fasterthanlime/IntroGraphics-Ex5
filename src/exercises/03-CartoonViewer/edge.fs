@@ -50,8 +50,7 @@ void main()
 	
 	float gx = C(Gx, i, j);
 	float gy = C(Gy, i, j);
-	float gnorm = sqrt( gx * gx + gy * gy );
+	float gnorm = 1.0 - 10.0 * sqrt( gx * gx + gy * gy );
 	
 	gl_FragColor = vec4( gnorm, gnorm, gnorm, 1.0 );
-	
 }
