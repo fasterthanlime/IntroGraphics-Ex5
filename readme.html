@@ -44,25 +44,26 @@ by Amos Wenger and Javier Martín de Valmaseda
 </p>
 <h2>4.1 Introduction</h2>
 
-<p class='center'><img src="images/example.png"></p>
-
 <h2>4.2 Toon-Shading</h2>
 <p>In this exercise we only have to follow the instuctions of the assignement. </p>
 <p>L and N was given to us, and we need to calculate the diffuse coefficient D = max(dot(N,L) ,0) to do a lookup in a 1D texture. 
 The final color is the 1D texture multiplied by the previous calculated color.</p>
-	
 
 <h2>4.3 Contour</h2>
 
 <h3>4.3.1 Linear Depth</h3>
+
+Since the camera is looking along the negative Z axis, taking the z coordinate of a given vertex and scaling it according to the far plane and near plane uniforms was enough.
+
 <p>depth = - ( vertex.z - near ) / ( far - near );</p>
 
 <h3>4.3.2 Edge Detection</h3>
-<p>At first, it was dificult to understand the explications, after reading thorough we have get it.</p> 
-<p>First we have calculated the I with the depth texture and the dx and dy. 
-After that, we have calculated C following the equation in the exercise. 
-Once we have C we can calculate gx(i,j) and gy(i,j) in order to obtain the magnitude M(i,j). 
-Finally we can set the final color applying the equation 1 -10* M(i, j)</p>
+
+<p>This exercise was a bit confusing at first, but reading articles from Wikipedia and careful review of the statement led us to the solution.</p>
+
+<p>We added two auxiliary functions for the purpose of the Prewitt operator computation: I(i, j) retrieves a given point of the texture, using dx and dy - set in the C++ code to be the width and height of a pixel in world coordinates. And C(m, i, j), which computed 2D discrete convolution, given a matrix and x, y coordinates in the texture image.</p>
+
+<p>Finally we computed the final color applying the equation 1 -10* M(i, j) as given in the statement to obtain a rudimentary contour of the edge.</p>
 
 <h3>4.4 Blending</h3>
 
