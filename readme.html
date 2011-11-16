@@ -47,15 +47,26 @@ by Amos Wenger and Javier Martín de Valmaseda
 <p class='center'><img src="images/example.png"></p>
 
 <h2>4.2 Toon-Shading</h2>
+<p>In this exercise we only have to follow the instuctions of the assignement. </p>
+<p>L and N was given to us, and we need to calculate the diffuse coefficient D = max(dot(N,L) ,0) to do a lookup in a 1D texture. 
+The final color is the 1D texture multiplied by the previous calculated color.</p>
+	
 
 <h2>4.3 Contour</h2>
 
 <h3>4.3.1 Linear Depth</h3>
+<p>depth = - ( vertex.z - near ) / ( far - near );</p>
 
 <h3>4.3.2 Edge Detection</h3>
+<p>At first, it was dificult to understand the explications, after reading thorough we have get it.</p> 
+<p>First we have calculated the I with the depth texture and the dx and dy. 
+After that, we have calculated C following the equation in the exercise. 
+Once we have C we can calculate gx(i,j) and gy(i,j) in order to obtain the magnitude M(i,j). 
+Finally we can set the final color applying the equation 1 -10* M(i, j)</p>
 
 <h3>4.4 Blending</h3>
 
+<p>As the assignement says we have to multiply the toon-shading image (cartoonColor) and the edge image (edgeColor) and that's it.</p>
 
 </body>
 </html>
